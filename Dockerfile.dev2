@@ -1,0 +1,28 @@
+FROM python:3.12-alpine
+
+WORKDIR /app
+
+# Install system dependencies for Alpine Linux
+RUN apk update && apk add --no-cache \
+    postgresql-dev \
+    gcc \
+    musl-dev \
+    libffi-dev \
+    openssl-dev
+
+RUN pip install --no-cache-dir uv
+
+COPY pyproject.toml uv.lock ./
+
+RUN uv sync
+
+COPY . .
+
+EXPOSE 8000
+
+LABEL NAME="FASTAPI APPLICATION" \
+      VERSION="1.0.0" \
+      DESCRIPTION="A SIMPLE CONTAINER" \
+      AUTHOR="ANJUM HASEEB"
+
+CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

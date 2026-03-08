@@ -1,0 +1,15 @@
+[project]
+name = "todo-app"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.128.7",
+    "psycopg2>=2.9.11",
+    "pwdlib[argon2]>=0.3.0",
+    "pyjwt>=2.11.0",
+    "python-jose[cryptography]>=3.5.0",
+    "python-jwt>=4.1.0",
+    "sqlalchemy>=2.0.46",
+]
